@@ -18,7 +18,6 @@ import java.io.*;
 public class StdSudokuGrid extends SudokuGrid
 {
     // TODO: Add your own attributes
-
     public StdSudokuGrid() {
         super();
 
