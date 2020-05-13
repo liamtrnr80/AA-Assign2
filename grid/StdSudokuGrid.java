@@ -4,6 +4,8 @@
 package grid;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,9 +20,18 @@ import java.io.*;
 public class StdSudokuGrid extends SudokuGrid
 {
     // TODO: Add your own attributes
+    /** The sudoku board that was generated at the start */
+    private List<List<Integer>> initSudoku;
+    /** The solution of the sudoku board */
+    private List<List<Integer>> soluSudoku;
+    /** ArrayList containing the non-zero values */
+    private ArrayList<Integer> values;
+    
+    
     public StdSudokuGrid() {
-        super();
-
+        values = new ArrayList<Integer>();
+        initSudoku = new ArrayList<>();
+        soluSudoku = new ArrayList<>();
         // TODO: any necessary initialisation at the constructor
     } // end of StdSudokuGrid()
 
@@ -33,6 +44,17 @@ public class StdSudokuGrid extends SudokuGrid
         throws FileNotFoundException, IOException
     {
         // TODO
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        
+        String line;
+        String[] fields;
+        
+        while((line = reader.readLine()) != null) {
+            fields = line.split("\\r?\\n");
+        }
+        
+        
+        
     } // end of initBoard()
 
 
