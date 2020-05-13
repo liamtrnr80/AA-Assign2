@@ -21,17 +21,18 @@ public class StdSudokuGrid extends SudokuGrid
 {
     // TODO: Add your own attributes
     /** The sudoku board that was generated at the start */
-    private List<List<Integer>> initSudoku;
+    private List<Coordinate> initSudoku;
     /** The solution of the sudoku board */
-    private List<List<Integer>> soluSudoku;
+    private List<Coordinate> soluSudoku;
     /** ArrayList containing the non-zero values */
     private ArrayList<Integer> values;
-    
+    /** The size of the sudoku board */
+    private int size;
     
     public StdSudokuGrid() {
-        values = new ArrayList<Integer>();
         initSudoku = new ArrayList<>();
         soluSudoku = new ArrayList<>();
+        values = new ArrayList<Integer>();
         // TODO: any necessary initialisation at the constructor
     } // end of StdSudokuGrid()
 
@@ -49,8 +50,12 @@ public class StdSudokuGrid extends SudokuGrid
         String line;
         String[] fields;
         
+        int rowNum = 0;
+        int colNum = 0;
+        
         while((line = reader.readLine()) != null) {
-            fields = line.split("\\r?\\n");
+            fields = line.trim().split("\\s+");
+            System.out.println(line);
         }
         
         
