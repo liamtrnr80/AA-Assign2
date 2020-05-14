@@ -1,5 +1,7 @@
 package grid;
 
+import java.util.Objects;
+
 public class Coordinate {
     
     protected int row;
@@ -48,6 +50,21 @@ public class Coordinate {
     
     public int getValue() {
         return value;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Coordinate that = (Coordinate) o;
+        return row == that.getRow() && column == that.getColumn();
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, column);
     }
     
     @Override

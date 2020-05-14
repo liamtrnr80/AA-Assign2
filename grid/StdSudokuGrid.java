@@ -55,9 +55,7 @@ public class StdSudokuGrid extends SudokuGrid
         
         while((line = reader.readLine()) != null) {
             fields = line.trim().split("\\s+");
-            System.out.println(line);
         }
-        
         
         
     } // end of initBoard()
