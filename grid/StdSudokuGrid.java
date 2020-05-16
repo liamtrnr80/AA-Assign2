@@ -30,9 +30,11 @@ public class StdSudokuGrid extends SudokuGrid
     private int size;
     
     public StdSudokuGrid() {
-        initSudoku = new ArrayList<>();
-        soluSudoku = new ArrayList<>();
+        System.out.println("WHAT'S HAPPENING");
+        initSudoku = new ArrayList<Coordinate>();
+        soluSudoku = new ArrayList<Coordinate>();
         values = new ArrayList<Integer>();
+        size = 0;
         // TODO: any necessary initialisation at the constructor
     } // end of StdSudokuGrid()
 
@@ -48,16 +50,30 @@ public class StdSudokuGrid extends SudokuGrid
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         
         String line;
-        String[] fields;
-        
         int rowNum = 0;
         int colNum = 0;
-        
+        int lineNum = 0;
+
         while((line = reader.readLine()) != null) {
-            fields = line.trim().split("\\s+");
+            String[] field = line.trim().split("\\s+|,\\s*");
+            if (lineNum == 0) {
+                System.out.println("Initiating Size");
+                this.size = Integer.parseInt(field[0]);
+                setupSudoku();
+                System.out.println(initSudoku);
+                System.out.println(toString());
+            } else if (lineNum == 1) {
+//                System.out.println("Initiating Values");
+                for (String string : field) {
+                    this.values.add(Integer.parseInt(string));
+                }
+            } else {
+//                System.out.println("Initiating Board");
+                this.initSudoku.add(new Coordinate(Integer.parseInt(field[0]), Integer.parseInt(field[1]), Integer.parseInt(field[2])));
+//                System.out.println(lineNum);
+            }
+            lineNum++;
         }
-        
-        
     } // end of initBoard()
 
 
@@ -72,10 +88,18 @@ public class StdSudokuGrid extends SudokuGrid
     @Override
     public String toString() {
         // TODO
-
+        StringBuffer stringBuffer = new StringBuffer();
+        for(int i = 0; i < (size*size); i++) {
+            if(i % size == 0) {
+                stringBuffer.append("\n");
+            } else {
+                stringBuffer.append(initSudoku.get(i));
+            }
+        }
         // placeholder
-        return String.valueOf("");
+        return stringBuffer.toString();
     } // end of toString()
+
 
 
     @Override
@@ -85,5 +109,13 @@ public class StdSudokuGrid extends SudokuGrid
         // placeholder
         return false;
     } // end of validate()
+
+    private void setupSudoku() {
+        for(int i = 0; i < size; i++) {
+            for(int j = 0; j < size; j++) {
+                initSudoku.add(new Coordinate(i, j));
+            }
+        }
+    }
 
 } // end of class StdSudokuGrid
