@@ -30,7 +30,6 @@ public class StdSudokuGrid extends SudokuGrid
     private int size;
     
     public StdSudokuGrid() {
-        System.out.println("WHAT'S HAPPENING");
         initSudoku = new ArrayList<Coordinate>();
         soluSudoku = new ArrayList<Coordinate>();
         values = new ArrayList<Integer>();
@@ -60,15 +59,11 @@ public class StdSudokuGrid extends SudokuGrid
                 System.out.println("Initiating Size");
                 this.size = Integer.parseInt(field[0]);
                 setupSudoku();
-                System.out.println(initSudoku);
-                System.out.println(this);
             } else if (lineNum == 1) {
-//                System.out.println("Initiating Values");
                 for (String string : field) {
                     this.values.add(Integer.parseInt(string));
                 }
             } else {
-//                System.out.println("Initiating Board");
                 Coordinate newCoord = new Coordinate(Integer.parseInt(field[0]), Integer.parseInt(field[1]), Integer.parseInt(field[2]));
                 for(Coordinate coordinate : initSudoku) {
                     if(coordinate.equals(newCoord)) {
@@ -87,6 +82,7 @@ public class StdSudokuGrid extends SudokuGrid
         throws FileNotFoundException, IOException
     {
         // TODO
+
     } // end of outputBoard()
 
 
