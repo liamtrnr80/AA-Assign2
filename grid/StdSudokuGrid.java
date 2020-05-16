@@ -61,7 +61,7 @@ public class StdSudokuGrid extends SudokuGrid
                 this.size = Integer.parseInt(field[0]);
                 setupSudoku();
                 System.out.println(initSudoku);
-                System.out.println(toString());
+                System.out.println(this);
             } else if (lineNum == 1) {
 //                System.out.println("Initiating Values");
                 for (String string : field) {
@@ -69,11 +69,16 @@ public class StdSudokuGrid extends SudokuGrid
                 }
             } else {
 //                System.out.println("Initiating Board");
-                this.initSudoku.add(new Coordinate(Integer.parseInt(field[0]), Integer.parseInt(field[1]), Integer.parseInt(field[2])));
-//                System.out.println(lineNum);
+                Coordinate newCoord = new Coordinate(Integer.parseInt(field[0]), Integer.parseInt(field[1]), Integer.parseInt(field[2]));
+                for(Coordinate coordinate : initSudoku) {
+                    if(coordinate.equals(newCoord)) {
+                        initSudoku.set(initSudoku.indexOf(coordinate), newCoord);
+                    }
+                }
             }
             lineNum++;
         }
+        System.out.println(this);
     } // end of initBoard()
 
 
@@ -87,16 +92,14 @@ public class StdSudokuGrid extends SudokuGrid
 
     @Override
     public String toString() {
-        // TODO
         StringBuffer stringBuffer = new StringBuffer();
         for(int i = 0; i < (size*size); i++) {
             if(i % size == 0) {
-                stringBuffer.append("\n");
+                stringBuffer.append("\n" + initSudoku.get(i));
             } else {
-                stringBuffer.append(initSudoku.get(i));
+                stringBuffer.append(" " + initSudoku.get(i));
             }
         }
-        // placeholder
         return stringBuffer.toString();
     } // end of toString()
 

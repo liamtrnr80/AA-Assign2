@@ -69,6 +69,7 @@ public class Coordinate {
     
     @Override
     public String toString() {
-        return String.format("(%d, %d) %d", row, column, value);
+//        return String.format("(%d, %d) %d", row, column, value);
+        return String.format("%d", value);
     }
 }
