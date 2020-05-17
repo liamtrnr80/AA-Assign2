@@ -38,6 +38,9 @@ public class BackTrackingSolver extends StdSudokuSolver
         sudoku = grid.getBoard();
         values = grid.getValues();
 
+        System.out.println(sudoku);
+        System.out.println(values);
+
         for(int i = 0; i < size; i++) {
             for(int j = 0; j < size; j++) {
                 if(sudoku.get(i).get(j).getValue() == -1){
@@ -49,20 +52,30 @@ public class BackTrackingSolver extends StdSudokuSolver
                     break;
                 }
             }
-            if(!empty)
+            if(!empty) {
+                System.out.println("Empty false");
                 break;
+            }
+
         }
 
-        if(empty)
+        if(empty){
+            System.out.println("Empty True");
             return true;
+        }
 
         for(Integer val : values) {
+            System.out.println("Iterating through values");
             if(grid.validate()) {
+                System.out.println("Grid is valid");
                 sudoku.get(row).get(col).setValue(val);
                 grid.setBoard(sudoku);
+                System.out.println(grid);
                 if(solve(grid)) {
+                    System.out.println("Solve it");
                     return true;
                 } else {
+                    System.out.println("Replace it");
                     sudoku.get(row).get(col).setValue(-1);
                 }
             }
