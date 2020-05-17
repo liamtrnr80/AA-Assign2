@@ -107,7 +107,7 @@ public class StdSudokuGrid extends SudokuGrid
         // TODO
         for(List<Coordinate> list : initSudoku) {
             for(Coordinate coordinate : list) {
-                if(rowSafe(coordinate) && colSafe(coordinate) && boxSafe(coordinate))
+                if(rowSafe(coordinate) && colSafe(coordinate) && boxSafe(coordinate) && values.contains(coordinate.getValue()))
                     return true;
             }
         }
@@ -175,5 +175,15 @@ public class StdSudokuGrid extends SudokuGrid
     @Override
     public List<List<Coordinate>> getBoard() {
         return initSudoku;
+    }
+
+    @Override
+    public void setBoard(List board) {
+        this.initSudoku = board;
+    }
+
+    @Override
+    public ArrayList<Integer> getValues() {
+        return values;
     }
 } // end of class StdSudokuGrid

@@ -5,6 +5,7 @@
  package grid;
 
  import java.io.*;
+ import java.util.ArrayList;
  import java.util.List;
 
 
@@ -75,4 +76,12 @@ public abstract class SudokuGrid
      * @return The ArrayList of the board
      */
     public abstract List<List<Coordinate>> getBoard();
+
+    public abstract void setBoard(List board);
+
+    /**
+     *
+     * @return
+     */
+    public abstract ArrayList<Integer> getValues();
 } // end of abstract class SudokuGrid

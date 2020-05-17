@@ -14,7 +14,7 @@ public class Coordinate {
      * @param c Column coordinate
      */
     public Coordinate(int r, int c) {
-        this(r, c, 0);
+        this(r, c, -1);
     }
     
     /**

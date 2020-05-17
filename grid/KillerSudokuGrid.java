@@ -4,6 +4,7 @@
 package grid;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -70,6 +71,16 @@ public class KillerSudokuGrid extends SudokuGrid
 
     @Override
     public List<List<Coordinate>> getBoard() {
+        return null;
+    }
+
+    @Override
+    public void setBoard(List board) {
+
+    }
+
+    @Override
+    public ArrayList<Integer> getValues() {
         return null;
     }
 
