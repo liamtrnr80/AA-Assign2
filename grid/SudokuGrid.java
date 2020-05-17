@@ -5,6 +5,7 @@
  package grid;
 
  import java.io.*;
+ import java.util.List;
 
 
 /**
@@ -62,4 +63,16 @@ public abstract class SudokuGrid
      */
     public abstract boolean validate();
 
+    /**
+     * A way to get the size of the sudoku grid when trying to solve the grid.
+     * @return The size of the grid.
+     */
+    public abstract int getSize();
+
+    /**
+     * A way to retrive the sudoku board after it is initiated by the user and can be used
+     * to solve properly
+     * @return The ArrayList of the board
+     */
+    public abstract List<List<Coordinate>> getBoard();
 } // end of abstract class SudokuGrid

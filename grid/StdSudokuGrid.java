@@ -24,8 +24,6 @@ public class StdSudokuGrid extends SudokuGrid
     // TODO: Add your own attributes
     /** The sudoku board that was generated at the start */
     private List<List<Coordinate>> initSudoku;
-    /** The solution of the sudoku board */
-    private List<List<Coordinate>> soluSudoku;
     /** ArrayList containing the non-zero values */
     private ArrayList<Integer> values;
     /** The size of the sudoku board */
@@ -33,9 +31,6 @@ public class StdSudokuGrid extends SudokuGrid
     
     public StdSudokuGrid() {
         initSudoku = new ArrayList<>();
-        soluSudoku = new ArrayList<>();
-//        initSudoku = new ArrayList<new ArrayList<Coordinate>()>();
-//        soluSudoku = new ArrayList<new ArrayList<Coordinate>()>();
         values = new ArrayList<Integer>();
         size = 0;
         // TODO: any necessary initialisation at the constructor
@@ -110,8 +105,12 @@ public class StdSudokuGrid extends SudokuGrid
     @Override
     public boolean validate() {
         // TODO
-
-        // placeholder
+        for(List<Coordinate> list : initSudoku) {
+            for(Coordinate coordinate : list) {
+                if(rowSafe(coordinate) && colSafe(coordinate) && boxSafe(coordinate))
+                    return true;
+            }
+        }
         return false;
     } // end of validate()
 
@@ -130,24 +129,51 @@ public class StdSudokuGrid extends SudokuGrid
      * @return true if coordinate is unique to row
      */
     private boolean rowSafe(Coordinate coordinate) {
-        for(int i = 0; i < size; i++) {
+        for(int i = 0; i < size; i++)
             if(initSudoku.get(coordinate.getRow()).get(i).getValue() == coordinate.getValue())
                 return false;
-        }
+
         return true;
     }
 
+    /**
+     * Checks to make sure that the column is valid
+     * @param coordinate the coordinate to check
+     * @return true if coordinate is unique to column
+     */
     private boolean colSafe(Coordinate coordinate) {
-        for(int i = 0; i < size; i++) {
+        for(int i = 0; i < size; i++)
             if(initSudoku.get(i).get(coordinate.getColumn()).getValue() == coordinate.getValue())
                 return false;
-        }
+
         return true;
     }
 
+    /**
+     * Checks to make sure that sudoku box is valid
+     * @param coordinate the coordinate to check
+     * @return true if coordinate is unique to column
+     */
     private boolean boxSafe(Coordinate coordinate) {
         int sqrt = (int) Math.sqrt(size);
-        return false;
+        int boxXStart = coordinate.row - coordinate.row % sqrt;
+        int boxYStart = coordinate.column - coordinate.column % sqrt;
+
+        for(int i = boxXStart; i < boxXStart + sqrt; i++)
+            for(int j = boxYStart; j < boxYStart + sqrt; j++)
+                if(initSudoku.get(i).get(j).getValue() == coordinate.getValue())
+                    return false;
+
+        return true;
     }
 
+    @Override
+    public int getSize() {
+        return size;
+    }
+
+    @Override
+    public List<List<Coordinate>> getBoard() {
+        return initSudoku;
+    }
 } // end of class StdSudokuGrid
