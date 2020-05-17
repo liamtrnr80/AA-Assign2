@@ -4,6 +4,8 @@
 package grid;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -61,5 +63,25 @@ public class KillerSudokuGrid extends SudokuGrid
         // placeholder
         return false;
     } // end of validate()
+
+    @Override
+    public int getSize() {
+        return 0;
+    }
+
+    @Override
+    public List<List<Coordinate>> getBoard() {
+        return null;
+    }
+
+    @Override
+    public void setBoard(List board) {
+
+    }
+
+    @Override
+    public ArrayList<Integer> getValues() {
+        return null;
+    }
 
 } // end of class KillerSudokuGrid
