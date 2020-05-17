@@ -124,4 +124,30 @@ public class StdSudokuGrid extends SudokuGrid
         }
     }
 
+    /**
+     * Checks to make sure that the row is valid
+     * @param coordinate the coordinate to check
+     * @return true if coordinate is unique to row
+     */
+    private boolean rowSafe(Coordinate coordinate) {
+        for(int i = 0; i < size; i++) {
+            if(initSudoku.get(coordinate.getRow()).get(i).getValue() == coordinate.getValue())
+                return false;
+        }
+        return true;
+    }
+
+    private boolean colSafe(Coordinate coordinate) {
+        for(int i = 0; i < size; i++) {
+            if(initSudoku.get(i).get(coordinate.getColumn()).getValue() == coordinate.getValue())
+                return false;
+        }
+        return true;
+    }
+
+    private boolean boxSafe(Coordinate coordinate) {
+        int sqrt = (int) Math.sqrt(size);
+        return false;
+    }
+
 } // end of class StdSudokuGrid
