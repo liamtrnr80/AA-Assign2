@@ -31,7 +31,7 @@ public class StdSudokuGrid extends SudokuGrid
     
     public StdSudokuGrid() {
         initSudoku = new ArrayList<>();
-        values = new ArrayList<Integer>();
+        values = new ArrayList<>();
         size = 0;
         // TODO: any necessary initialisation at the constructor
     } // end of StdSudokuGrid()
