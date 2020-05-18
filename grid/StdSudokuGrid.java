@@ -88,16 +88,16 @@ public class StdSudokuGrid extends SudokuGrid
 
     @Override
     public String toString() {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
 
         for(int i = 0; i < size; i++) {
             for(int j = 0; j < size; j++) {
-                stringBuffer.append(initSudoku.get(i).get(j) + " ");
+                stringBuilder.append(initSudoku.get(i).get(j)).append(" ");
             }
-            stringBuffer.append("\n");
+            stringBuilder.append("\n");
         }
 
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     } // end of toString()
 
 
