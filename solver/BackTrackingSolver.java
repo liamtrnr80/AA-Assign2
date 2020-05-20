@@ -39,12 +39,10 @@ public class BackTrackingSolver extends StdSudokuSolver
         values = grid.getValues();
 
         System.out.println(sudoku);
-        System.out.println(values);
 
         for(int i = 0; i < size; i++) {
             for(int j = 0; j < size; j++) {
                 if(sudoku.get(i).get(j).getValue() == -1){
-                    System.out.println("Board == -1");
                     row = i;
                     col = j;
 
@@ -53,29 +51,23 @@ public class BackTrackingSolver extends StdSudokuSolver
                 }
             }
             if(!empty) {
-                System.out.println("Empty false");
                 break;
             }
 
         }
 
         if(empty){
-            System.out.println("Empty True");
+            System.out.println(grid);
             return true;
         }
 
         for(Integer val : values) {
-            System.out.println("Iterating through values");
-            if(grid.validate()) {
-                System.out.println("Grid is valid");
+            if(isSafe(row, col, val)) {
                 sudoku.get(row).get(col).setValue(val);
                 grid.setBoard(sudoku);
-                System.out.println(grid);
                 if(solve(grid)) {
-                    System.out.println("Solve it");
                     return true;
                 } else {
-                    System.out.println("Replace it");
                     sudoku.get(row).get(col).setValue(-1);
                 }
             }
@@ -84,4 +76,31 @@ public class BackTrackingSolver extends StdSudokuSolver
         return false;
     } // end of solve()
 
+    private boolean isSafe(int row, int col, int num) {
+        for(int i = 0; i < sudoku.size(); i++) {
+            if(sudoku.get(row).get(i).getValue() == (num)) {
+                return false;
+            }
+        }
+    
+        for (List<Coordinate> coordinates : sudoku) {
+            if (coordinates.get(col).getValue() == (num)) {
+                return false;
+            }
+        }
+    
+        int sqrt = (int) Math.sqrt(sudoku.size());
+        int boxXStart = row - row % sqrt;
+        int boxYStart = col - col % sqrt;
+    
+        for(int i = boxXStart; i < boxXStart + sqrt; i++) {
+            for(int j = boxYStart; j < boxYStart + sqrt; j++) {
+                if (sudoku.get(i).get(j).getValue() == num) {
+                    return false;
+                }
+            }
+        }
+       
+        return true;
+    }
 } // end of class BackTrackingSolver()

@@ -31,7 +31,7 @@ public class StdSudokuGrid extends SudokuGrid
     
     public StdSudokuGrid() {
         initSudoku = new ArrayList<>();
-        values = new ArrayList<Integer>();
+        values = new ArrayList<>();
         size = 0;
         // TODO: any necessary initialisation at the constructor
     } // end of StdSudokuGrid()
@@ -88,16 +88,16 @@ public class StdSudokuGrid extends SudokuGrid
 
     @Override
     public String toString() {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
 
         for(int i = 0; i < size; i++) {
             for(int j = 0; j < size; j++) {
-                stringBuffer.append(initSudoku.get(i).get(j) + " ");
+                stringBuilder.append(initSudoku.get(i).get(j)).append(" ");
             }
-            stringBuffer.append("\n");
+            stringBuilder.append("\n");
         }
 
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     } // end of toString()
 
 
