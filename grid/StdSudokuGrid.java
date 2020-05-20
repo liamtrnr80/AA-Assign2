@@ -105,12 +105,38 @@ public class StdSudokuGrid extends SudokuGrid
     @Override
     public boolean validate() {
         // TODO
-        for(List<Coordinate> list : initSudoku) {
-            for(Coordinate coordinate : list) {
-                if(rowSafe(coordinate) && colSafe(coordinate) && boxSafe(coordinate) && values.contains(coordinate.getValue()))
-                    return true;
+        if(initSudoku == null || initSudoku.size() != size || initSudoku.get(0).size() != size)
+            return false;
+        for(int i = 0; i < size; i++) {
+            boolean[] check = new boolean[size];
+            for(int j = 0; j < size; j++) {
+                if(initSudoku.get(i).get(j).getValue() != -1) {
+                    if(check[initSudoku.get(i).get(j).getValue() - 1]) {
+                        return false;
+                    }
+                    check[initSudoku.get(i).get(j).getValue() - 1] = true;
+                }
             }
         }
+
+        for(int i = 0; i < size; i++) {
+            boolean[] check = new boolean[size];
+            for(int j = 0; j < size; j++) {
+                if(initSudoku.get(i).get(j).getValue() != -1) {
+                    if(check[initSudoku.get(i).get(j).getValue() - 1]) {
+                        return false;
+                    }
+                    check[initSudoku.get(i).get(j).getValue() - 1] = true;
+                }
+            }
+        }
+
+        int sqrt = (int) Math.sqrt(size);
+        for(int block = 0; block < size; block++) {
+            boolean[] check = new boolean[size];
+
+        }
+
         return false;
     } // end of validate()
 
