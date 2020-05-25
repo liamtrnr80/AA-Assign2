@@ -28,12 +28,14 @@ public class StdSudokuGrid extends SudokuGrid
     private ArrayList<Integer> values;
     /** The size of the sudoku board */
     private int size;
-    
+    /** A negative integer to act as an empty cell */
+    private final int EMPTY_CELL = -1;
+
+
     public StdSudokuGrid() {
         initSudoku = new ArrayList<>();
         values = new ArrayList<>();
         size = 0;
-        // TODO: any necessary initialisation at the constructor
     } // end of StdSudokuGrid()
 
 
@@ -105,7 +107,7 @@ public class StdSudokuGrid extends SudokuGrid
         for(int i = 0; i < size; i++) {
             List check = new ArrayList();
             for(int j = 0; j < size; j++) {
-                if(initSudoku.get(i).get(j).getValue() != -1) {
+                if(initSudoku.get(i).get(j).getValue() != EMPTY_CELL) {
                     if(check.contains(initSudoku.get(i).get(j).getValue())) {
                         return false;
                     }
@@ -117,7 +119,7 @@ public class StdSudokuGrid extends SudokuGrid
         for(int j = 0; j < size; j++) {
             List check = new ArrayList();
             for(int i = 0; i < size; i++) {
-                if(initSudoku.get(i).get(j).getValue() != -1) {
+                if(initSudoku.get(i).get(j).getValue() != EMPTY_CELL) {
                     if(check.contains(initSudoku.get(i).get(j).getValue())) {
                         return false;
                     }
@@ -131,10 +133,12 @@ public class StdSudokuGrid extends SudokuGrid
             List check = new ArrayList();
             for (int i = block / sqrt * sqrt; i < block / sqrt * sqrt + sqrt; i++) {
                 for (int j = block % sqrt * sqrt; j < block % sqrt * sqrt + sqrt; j++) {
-                    if (check.contains(initSudoku.get(i).get(j).getValue())) {
-                        return false;
+                    if(initSudoku.get(i).get(j).getValue() != EMPTY_CELL) {
+                        if(check.contains(initSudoku.get(i).get(j).getValue())) {
+                            return false;
+                        }
+                        check.add(initSudoku.get(i).get(j).getValue());
                     }
-                    check.add(initSudoku.get(i).get(j).getValue());
                 }
             }
         }

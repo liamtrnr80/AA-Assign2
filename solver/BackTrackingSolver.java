@@ -19,6 +19,7 @@ public class BackTrackingSolver extends StdSudokuSolver
     // TODO: Add attributes as needed.
     private List<List<Coordinate>> sudoku;
     private ArrayList<Integer> values;
+    private final int EMPTY_CELL = -1;
 
     public BackTrackingSolver() {
         sudoku = new ArrayList<>();
@@ -37,7 +38,7 @@ public class BackTrackingSolver extends StdSudokuSolver
 
         for(int i = 0; i < size; i++) {
             for(int j = 0; j < size; j++) {
-                if(sudoku.get(i).get(j).getValue() == -1){
+                if(sudoku.get(i).get(j).getValue() == EMPTY_CELL){
                     row = i;
                     col = j;
 
