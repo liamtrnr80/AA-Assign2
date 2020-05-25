@@ -108,33 +108,40 @@ public class StdSudokuGrid extends SudokuGrid
         if(initSudoku == null || initSudoku.size() != size || initSudoku.get(0).size() != size)
             return false;
         for(int i = 0; i < size; i++) {
-            boolean[] check = new boolean[size];
+            List check = new ArrayList();
             for(int j = 0; j < size; j++) {
                 if(initSudoku.get(i).get(j).getValue() != -1) {
-                    if(check[initSudoku.get(i).get(j).getValue() - 1]) {
+                    if(check.contains(initSudoku.get(i).get(j).getValue())) {
                         return false;
                     }
-                    check[initSudoku.get(i).get(j).getValue() - 1] = true;
+                    check.add(initSudoku.get(i).get(j).getValue());
                 }
             }
         }
 
-        for(int i = 0; i < size; i++) {
-            boolean[] check = new boolean[size];
-            for(int j = 0; j < size; j++) {
+        for(int j = 0; j < size; j++) {
+            List check = new ArrayList();
+            for(int i = 0; i < size; i++) {
                 if(initSudoku.get(i).get(j).getValue() != -1) {
-                    if(check[initSudoku.get(i).get(j).getValue() - 1]) {
+                    if(check.contains(initSudoku.get(i).get(j).getValue())) {
                         return false;
                     }
-                    check[initSudoku.get(i).get(j).getValue() - 1] = true;
+                    check.add(initSudoku.get(i).get(j).getValue());
                 }
             }
         }
 
         int sqrt = (int) Math.sqrt(size);
-        for(int block = 0; block < size; block++) {
-            boolean[] check = new boolean[size];
-
+        for(int j = 0; j < size; j++) {
+            List check = new ArrayList();
+            for(int i = 0; i < size; i++) {
+                if(initSudoku.get(i).get(j).getValue() != -1) {
+                    if(check.contains(initSudoku.get(i).get(j).getValue())) {
+                        return false;
+                    }
+                    check.add(initSudoku.get(i).get(j).getValue());
+                }
+            }
         }
 
         return false;
