@@ -44,12 +44,9 @@ public class StdSudokuGrid extends SudokuGrid
     public void initGrid(String filename)
         throws FileNotFoundException, IOException
     {
-        // TODO
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         
         String line;
-        int rowNum = 0;
-        int colNum = 0;
         int lineNum = 0;
 
         while((line = reader.readLine()) != null) {
@@ -73,7 +70,6 @@ public class StdSudokuGrid extends SudokuGrid
             }
             lineNum++;
         }
-        System.out.println(this);
     } // end of initBoard()
 
 
@@ -104,7 +100,6 @@ public class StdSudokuGrid extends SudokuGrid
 
     @Override
     public boolean validate() {
-        // TODO
         if(initSudoku == null || initSudoku.size() != size || initSudoku.get(0).size() != size)
             return false;
         for(int i = 0; i < size; i++) {
@@ -132,11 +127,11 @@ public class StdSudokuGrid extends SudokuGrid
         }
 
         int sqrt = (int) Math.sqrt(size);
-        for(int j = 0; j < size; j++) {
+        for (int block = 0; block < size; block++) {
             List check = new ArrayList();
-            for(int i = 0; i < size; i++) {
-                if(initSudoku.get(i).get(j).getValue() != -1) {
-                    if(check.contains(initSudoku.get(i).get(j).getValue())) {
+            for (int i = block / sqrt * sqrt; i < block / sqrt * sqrt + sqrt; i++) {
+                for (int j = block % sqrt * sqrt; j < block % sqrt * sqrt + sqrt; j++) {
+                    if (check.contains(initSudoku.get(i).get(j).getValue())) {
                         return false;
                     }
                     check.add(initSudoku.get(i).get(j).getValue());
@@ -144,7 +139,7 @@ public class StdSudokuGrid extends SudokuGrid
             }
         }
 
-        return false;
+        return true;
     } // end of validate()
 
     private void setupSudoku() {
@@ -154,50 +149,6 @@ public class StdSudokuGrid extends SudokuGrid
                 initSudoku.get(i).add(new Coordinate(i, j));
             }
         }
-    }
-
-    /**
-     * Checks to make sure that the row is valid
-     * @param coordinate the coordinate to check
-     * @return true if coordinate is unique to row
-     */
-    private boolean rowSafe(Coordinate coordinate) {
-        for(int i = 0; i < size; i++)
-            if(initSudoku.get(coordinate.getRow()).get(i).getValue() == coordinate.getValue())
-                return false;
-
-        return true;
-    }
-
-    /**
-     * Checks to make sure that the column is valid
-     * @param coordinate the coordinate to check
-     * @return true if coordinate is unique to column
-     */
-    private boolean colSafe(Coordinate coordinate) {
-        for(int i = 0; i < size; i++)
-            if(initSudoku.get(i).get(coordinate.getColumn()).getValue() == coordinate.getValue())
-                return false;
-
-        return true;
-    }
-
-    /**
-     * Checks to make sure that sudoku box is valid
-     * @param coordinate the coordinate to check
-     * @return true if coordinate is unique to column
-     */
-    private boolean boxSafe(Coordinate coordinate) {
-        int sqrt = (int) Math.sqrt(size);
-        int boxXStart = coordinate.row - coordinate.row % sqrt;
-        int boxYStart = coordinate.column - coordinate.column % sqrt;
-
-        for(int i = boxXStart; i < boxXStart + sqrt; i++)
-            for(int j = boxYStart; j < boxYStart + sqrt; j++)
-                if(initSudoku.get(i).get(j).getValue() == coordinate.getValue())
-                    return false;
-
-        return true;
     }
 
     @Override
