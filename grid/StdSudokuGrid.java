@@ -79,6 +79,7 @@ public class StdSudokuGrid extends SudokuGrid
     {
         // TODO
         PrintWriter output = new PrintWriter(System.out, true);
+        
     } // end of outputBoard()
 
 
