@@ -44,8 +44,14 @@ public class StdSudokuGrid extends SudokuGrid
     public void initGrid(String filename)
         throws FileNotFoundException, IOException
     {
-        BufferedReader reader = new BufferedReader(new FileReader(filename));
-        
+        BufferedReader reader;
+
+        try {
+            reader = new BufferedReader(new FileReader(filename));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         String line;
         int lineNum = 0;
 
