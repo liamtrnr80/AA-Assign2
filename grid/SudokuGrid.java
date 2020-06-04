@@ -4,6 +4,8 @@
 
  package grid;
 
+ import cell.AbstractCell;
+
  import java.io.*;
  import java.util.ArrayList;
  import java.util.List;
@@ -15,7 +17,22 @@
  */
 public abstract class SudokuGrid
 {
-
+  
+    protected List<AbstractCell> board;
+    protected List<List<AbstractCell>> tempBoard;
+    protected List<Integer> values;
+    
+    protected int size;
+    protected int sqr;
+    
+    protected boolean isFinished;
+    
+    public SudokuGrid() {
+        values = new ArrayList<>();
+        tempBoard = new ArrayList<>();
+        isFinished = false;
+    }
+    
     /**
      * Load the specified file and construct an initial grid from the contents
      * of the file.  See assignment specifications and sampleGames to see
@@ -64,24 +81,4 @@ public abstract class SudokuGrid
      */
     public abstract boolean validate();
 
-    /**
-     * A way to get the size of the sudoku grid when trying to solve the grid.
-     * @return The size of the grid.
-     */
-    public abstract int getSize();
-
-    /**
-     * A way to retrive the sudoku board after it is initiated by the user and can be used
-     * to solve properly
-     * @return The ArrayList of the board
-     */
-    public abstract List<List<Coordinate>> getBoard();
-
-    public abstract void setBoard(List board);
-
-    /**
-     *
-     * @return
-     */
-    public abstract ArrayList<Integer> getValues();
 } // end of abstract class SudokuGrid

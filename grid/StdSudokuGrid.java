@@ -3,11 +3,12 @@
  */
 package grid;
 
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+import cell.Cell;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 /**
@@ -22,17 +23,9 @@ import java.util.List;
 public class StdSudokuGrid extends SudokuGrid
 {
     // TODO: Add your own attributes
-    /** The sudoku board that was generated at the start */
-    private List<List<Coordinate>> initSudoku;
-    /** ArrayList containing the non-zero values */
-    private ArrayList<Integer> values;
-    /** The size of the sudoku board */
-    private int size;
-    
     public StdSudokuGrid() {
-        initSudoku = new ArrayList<>();
-        values = new ArrayList<>();
-        size = 0;
+        super();
+        
         // TODO: any necessary initialisation at the constructor
     } // end of StdSudokuGrid()
 
@@ -44,130 +37,155 @@ public class StdSudokuGrid extends SudokuGrid
     public void initGrid(String filename)
         throws FileNotFoundException, IOException
     {
-        BufferedReader reader = new BufferedReader(new FileReader(filename));
-        
-        String line;
-        int lineNum = 0;
-
-        while((line = reader.readLine()) != null) {
-            String[] field = line.trim().split("\\s+|,\\s*");
-            if (lineNum == 0) {
-                this.size = Integer.parseInt(field[0]);
-                setupSudoku();
-            } else if (lineNum == 1) {
-                for (String string : field) {
-                    this.values.add(Integer.parseInt(string));
-                }
-            } else {
-                Coordinate newCoord = new Coordinate(Integer.parseInt(field[0]), Integer.parseInt(field[1]), Integer.parseInt(field[2]));
-                for(List<Coordinate> list : initSudoku) {
-                    for(Coordinate coordinate : list) {
-                        if(coordinate.equals(newCoord)) {
-                            coordinate.setValue(Integer.parseInt(field[2]));
-                        }
-                    }
-                }
-            }
-            lineNum++;
+        // TODO
+        Scanner reader;
+        try {
+            reader = new Scanner(new File(filename));
+        } catch (FileNotFoundException e) {
+             throw new RuntimeException(e);
         }
+        
+        String line = reader.nextLine();
+        
+        size = Integer.parseInt(line);
+        sqr = (int) Math.sqrt(size);
+
+        
+        
+        line = reader.nextLine();
+        String[] vals = line.trim().split("\\s+|,\\s*");
+        
+        for(String string : vals) {
+            values.add(Integer.parseInt(string));
+        }
+        
+        board = new ArrayList<>(size*size);
+        
+        List<List<Cell>> col = new ArrayList<>(size);
+        List<List<Cell>> rows = new ArrayList<>(size);
+        List<List<Cell>> grid = new ArrayList<>(size);
+    
+        setupBoard();
+        
+        int index = 0;
+        
+        for(int y = 0; y < size; y++) {
+            List<Cell> currentRow = new ArrayList<>();
+            rows.add(currentRow);
+            for(int x = 0; x < size; x++) {
+                index = (x/sqr) + ((y/sqr) * sqr);
+                List<Cell> currentColumn = col.get(x);
+                List<Cell> currentNonet = grid.get(index);
+                
+                int value = tempBoard.get(y).get(x).getValue();
+                
+                Cell s = new Cell(x, y, value);
+                
+                s.setRow(currentRow);
+                s.setCol(currentColumn);
+                s.setGrid(currentNonet);
+                
+                currentRow.add(s);
+                currentColumn.add(s);
+                currentNonet.add(s);
+            }
+        }
+        
+//        for(int i = 0; i < size; i++) {
+//            col.add(new ArrayList<>());
+//            grid.add(new ArrayList<>());
+//        }
+//
+//        int index = 0;
+//
+//        List<Cell> input = new ArrayList<>();
+//
+//        while((line = reader.nextLine()) != null) {
+//            String[] field = line.trim().split("\\s+|,\\s*");
+//            Cell s = new Cell(Integer.parseInt(field[0]), Integer.parseInt(field[1]), Integer.parseInt(field[2]));
+//            input.add(s);
+//        }
+//
+//        for (int y = 0; y < size; y++) {
+//            List<Cell> newRow = new ArrayList<Cell>();
+//            row.add(newRow);
+//            for(int x = 0; x < size; x++) {
+//                index = (x/sqr) + ((y/sqr) * sqr);
+//                List<Cell> newCol = col.get(x);
+//                List<Cell> newGrid = grid.get(index);
+//
+//                Cell s = new Cell(x, y, 0);
+//
+//                System.out.println("New Cell = " + s);
+//
+//                s.setRow(newRow);
+//                s.setCol(newCol);
+//                s.setGrid(newGrid);
+//
+//                newRow.add(s);
+//                newCol.add(s);
+//                newGrid.add(s);
+//
+//                board.add(s);
+//            }
+//        }
+//        System.out.println(this);
+//        System.out.println(board);
+        
+        reader.close();
+//
+//        System.out.println();
+//
+//        System.out.println(this);
+//        System.out.println(board);
     } // end of initBoard()
 
 
+    public void setupBoard() {
+        for(int y = 0; y < size; y++) {
+            tempBoard.add(new ArrayList<>());
+            for(int x = 0; x < size; x++) {
+                tempBoard.get(y).add(new Cell(x, y, -1));
+            }
+        }
+    }
+    
     @Override
     public void outputGrid(String filename)
         throws FileNotFoundException, IOException
     {
         // TODO
-        PrintWriter output = new PrintWriter(System.out, true);
+        
     } // end of outputBoard()
 
 
     @Override
     public String toString() {
+        // TODO
         StringBuilder stringBuilder = new StringBuilder();
-
-        for(int i = 0; i < size; i++) {
-            for(int j = 0; j < size; j++) {
-                stringBuilder.append(initSudoku.get(i).get(j)).append(" ");
+        
+        stringBuilder.append(board.get(0).getValue());
+        
+        for (int i = 1; i < board.size(); i++) {
+            if(i % size == 0) {
+                stringBuilder.append("\n");
+            } else {
+                stringBuilder.append(",");
             }
-            stringBuilder.append("\n");
+            stringBuilder.append(board.get(i).getValue());
         }
-
+        
         return stringBuilder.toString();
     } // end of toString()
 
-
+    
 
     @Override
     public boolean validate() {
-        if(initSudoku == null || initSudoku.size() != size || initSudoku.get(0).size() != size)
-            return false;
-        for(int i = 0; i < size; i++) {
-            List check = new ArrayList();
-            for(int j = 0; j < size; j++) {
-                if(initSudoku.get(i).get(j).getValue() != -1) {
-                    if(check.contains(initSudoku.get(i).get(j).getValue())) {
-                        return false;
-                    }
-                    check.add(initSudoku.get(i).get(j).getValue());
-                }
-            }
-        }
+        // TODO
 
-        for(int j = 0; j < size; j++) {
-            List check = new ArrayList();
-            for(int i = 0; i < size; i++) {
-                if(initSudoku.get(i).get(j).getValue() != -1) {
-                    if(check.contains(initSudoku.get(i).get(j).getValue())) {
-                        return false;
-                    }
-                    check.add(initSudoku.get(i).get(j).getValue());
-                }
-            }
-        }
-
-        int sqrt = (int) Math.sqrt(size);
-        for (int block = 0; block < size; block++) {
-            List check = new ArrayList();
-            for (int i = block / sqrt * sqrt; i < block / sqrt * sqrt + sqrt; i++) {
-                for (int j = block % sqrt * sqrt; j < block % sqrt * sqrt + sqrt; j++) {
-                    if (check.contains(initSudoku.get(i).get(j).getValue())) {
-                        return false;
-                    }
-                    check.add(initSudoku.get(i).get(j).getValue());
-                }
-            }
-        }
-
-        return true;
+        // placeholder
+        return false;
     } // end of validate()
 
-    private void setupSudoku() {
-        for(int i = 0; i < size; i++) {
-            initSudoku.add(new ArrayList<>());
-            for(int j = 0; j < size; j++) {
-                initSudoku.get(i).add(new Coordinate(i, j));
-            }
-        }
-    }
-
-    @Override
-    public int getSize() {
-        return size;
-    }
-
-    @Override
-    public List<List<Coordinate>> getBoard() {
-        return initSudoku;
-    }
-
-    @Override
-    public void setBoard(List board) {
-        this.initSudoku = board;
-    }
-
-    @Override
-    public ArrayList<Integer> getValues() {
-        return values;
-    }
 } // end of class StdSudokuGrid
