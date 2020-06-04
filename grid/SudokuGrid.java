@@ -71,17 +71,22 @@ public abstract class SudokuGrid
     public abstract int getSize();
 
     /**
-     * A way to retrive the sudoku board after it is initiated by the user and can be used
+     * A way to retrieve the sudoku board after it is initiated by the user and can be used
      * to solve properly
      * @return The ArrayList of the board
      */
     public abstract List<List<Coordinate>> getBoard();
-
+    
+    /**
+     * Sets the sudoku board to input board
+     * @param board new state of board
+     */
     public abstract void setBoard(List board);
 
     /**
-     *
-     * @return
+     * A way to retrieve the values of the sudoku board after it is initiated by the user and can
+     * be used to solve properly
+     * @return The ArrayList of values.
      */
     public abstract ArrayList<Integer> getValues();
 } // end of abstract class SudokuGrid
