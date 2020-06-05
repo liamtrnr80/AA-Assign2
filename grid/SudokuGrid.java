@@ -80,5 +80,10 @@ public abstract class SudokuGrid
      * @return True if grid satisfies all constraints of the game in question.
      */
     public abstract boolean validate();
-
+    
+    public abstract int size();
+    
+    public abstract List<AbstractCell> board();
+    
+    public abstract List<Integer> values();
 } // end of abstract class SudokuGrid

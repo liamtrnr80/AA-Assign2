@@ -3,7 +3,10 @@
  */
 package grid;
 
+import cell.AbstractCell;
+
 import java.io.*;
+import java.util.List;
 
 
 /**
@@ -61,5 +64,20 @@ public class KillerSudokuGrid extends SudokuGrid
         // placeholder
         return false;
     } // end of validate()
-
+    
+    @Override
+    public int size() {
+        return size;
+    }
+    
+    @Override
+    public List<AbstractCell> board() {
+        return board;
+    }
+    
+    @Override
+    public List<Integer> values() {
+        return values;
+    }
+    
 } // end of class KillerSudokuGrid
