@@ -48,7 +48,6 @@ public class BackTrackingSolver extends StdSudokuSolver
             if(!empty) {
                 break;
             }
-
         }
 
         if(empty){
