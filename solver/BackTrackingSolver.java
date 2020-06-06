@@ -51,7 +51,6 @@ public class BackTrackingSolver extends StdSudokuSolver
         }
 
         if(empty){
-            System.out.println(grid);
             return true;
         }
 

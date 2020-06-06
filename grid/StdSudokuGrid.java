@@ -83,8 +83,24 @@ public class StdSudokuGrid extends SudokuGrid
     public void outputGrid(String filename)
         throws FileNotFoundException, IOException
     {
-        // TODO
+        StringBuilder stringBuilder = new StringBuilder();
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
         
+        for(int i = 0; i < size; i++) {
+            stringBuilder.append(initSudoku.get(i).get(0));
+            for(int j = 1; j < size; j++) {
+                if(i+j % size == 0) {
+                    stringBuilder.append("\n");
+                } else {
+                    stringBuilder.append(",");
+                }
+                stringBuilder.append(initSudoku.get(i).get(j));
+            }
+            stringBuilder.append("\n");
+        }
+        
+        writer.write(stringBuilder.toString());
+        writer.close();
     } // end of outputBoard()
 
 
