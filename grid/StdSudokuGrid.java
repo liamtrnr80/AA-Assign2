@@ -101,6 +101,7 @@ public class StdSudokuGrid extends SudokuGrid
                 tempBoard.get(y).add(new Cell(y, x, 0));
             }
         }
+        
         String line;
         
         while((line = reader.readLine()) != null) {
@@ -118,14 +119,13 @@ public class StdSudokuGrid extends SudokuGrid
     public void outputGrid(String filename)
         throws FileNotFoundException, IOException
     {
-        // TODO
-        
+    
+    
     } // end of outputBoard()
 
 
     @Override
     public String toString() {
-        // TODO
         StringBuilder stringBuilder = new StringBuilder();
         
         stringBuilder.append(board.get(0).getValue());
