@@ -84,7 +84,6 @@ public class StdSudokuGrid extends SudokuGrid
         throws FileNotFoundException, IOException
     {
         // TODO
-        PrintWriter output = new PrintWriter(System.out, true);
         
     } // end of outputBoard()
 
