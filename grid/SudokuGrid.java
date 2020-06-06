@@ -8,6 +8,7 @@
 
  import java.io.*;
  import java.util.ArrayList;
+ import java.util.Collections;
  import java.util.List;
 
 
@@ -81,9 +82,17 @@ public abstract class SudokuGrid
      */
     public abstract boolean validate();
     
-    public abstract int size();
+    public int size() {
+        return size;
+    }
     
-    public abstract List<AbstractCell> board();
+    public List<AbstractCell> board() {
+        return Collections.unmodifiableList(board);
+    }
     
     public abstract List<Integer> values();
+    
+    public void setBoard(List<AbstractCell> newBoard) {
+        board = newBoard;
+    }
 } // end of abstract class SudokuGrid

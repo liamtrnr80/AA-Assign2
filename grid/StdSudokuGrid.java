@@ -98,10 +98,9 @@ public class StdSudokuGrid extends SudokuGrid
         for(int y = 0; y < size; y++) {
             tempBoard.add(new ArrayList<>());
             for(int x = 0; x < size; x++) {
-                tempBoard.get(y).add(new Cell(y, x, 0));
+                tempBoard.get(y).add(new Cell(y, x, -1));
             }
         }
-        
         String line;
         
         while((line = reader.readLine()) != null) {
@@ -119,13 +118,16 @@ public class StdSudokuGrid extends SudokuGrid
     public void outputGrid(String filename)
         throws FileNotFoundException, IOException
     {
-    
-    
+        // TODO
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+        writer.write(this.toString());
+        writer.close();
     } // end of outputBoard()
 
 
     @Override
     public String toString() {
+        // TODO
         StringBuilder stringBuilder = new StringBuilder();
         
         stringBuilder.append(board.get(0).getValue());
@@ -147,19 +149,14 @@ public class StdSudokuGrid extends SudokuGrid
     @Override
     public boolean validate() {
         // TODO
-
-        // placeholder
-        return false;
+        return board.stream().allMatch(AbstractCell::isValid);
+        
+//        return false;
     } // end of validate()
     
     @Override
     public int size() {
         return size;
-    }
-    
-    @Override
-    public List<AbstractCell> board() {
-        return board;
     }
     
     @Override
