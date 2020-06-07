@@ -94,9 +94,7 @@ public abstract class AbstractCell {
     public boolean equals(Object obj) {
         if(obj instanceof Cell) {
             Cell other = (Cell) obj;
-            if(other.r == this.r && other.c == this.c) {
-                return true;
-            }
+            return other.r == this.r && other.c == this.c;
         }
         return false;
     }
