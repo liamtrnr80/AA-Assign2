@@ -79,7 +79,7 @@ public class KillerSudokuGrid extends SudokuGrid {
                 List<KillerCell> currentColumn = column.get(c);
                 List<KillerCell> currentNonet = grid.get(index);
                 
-                KillerCell cell = new KillerCell(r, c, -1);
+                KillerCell cell = new KillerCell(r, c, 0);
                 
                 cell.setRow(currentRow);
                 cell.setCol(currentColumn);
@@ -101,9 +101,13 @@ public class KillerSudokuGrid extends SudokuGrid {
             }
         }
         
+        System.out.println("Cage " + cage);
+        System.out.println("TempCage" + tempCage);
+        System.out.println("TempValues " + tempVals);
+        
         cage.forEach((k, v) -> v.forEach(c -> c.setTotal(tempVals.get(k))));
         
-        System.out.println("Cage " + cage);
+        
     } // end of initBoard()
     
     private void setupTempCage(BufferedReader reader) throws IOException {
@@ -111,6 +115,8 @@ public class KillerSudokuGrid extends SudokuGrid {
         String key = "";
         String[] keys = new String[numCages];
         String line;
+        
+        System.out.println("Setting up tempBoard");
         
         while ((line = reader.readLine()) != null) {
             String[] newLine = line.trim().split(" ");
@@ -124,10 +130,12 @@ public class KillerSudokuGrid extends SudokuGrid {
             if (index > 25)
                 key = keys[(index / 26) - 1] + "" + c;
             
+            keys[index] = key;
+            
             for (int i = 1; i < newLine.length; i++) {
                 String[] tempCell = newLine[i].trim().split(",");
                 
-                tempList.add(new KillerCell(Integer.parseInt(tempCell[0]), Integer.parseInt(tempCell[1]), -1));
+                tempList.add(new KillerCell(Integer.parseInt(tempCell[0]), Integer.parseInt(tempCell[1]), 0));
                 
                 tempVals.put(key, total);
                 tempCage.put(key, tempList);
@@ -188,10 +196,10 @@ public class KillerSudokuGrid extends SudokuGrid {
     
     @Override
     public boolean validate() {
-        // TODO
-        
-        // placeholder
-        return false;
+        if (board == null || board.size() != size * size)
+            return false;
+    
+        return board.stream().allMatch(AbstractCell::isValid);
     } // end of validate()
     
 } // end of class KillerSudokuGrid

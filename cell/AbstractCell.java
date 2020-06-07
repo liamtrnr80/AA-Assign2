@@ -65,7 +65,7 @@ public abstract class AbstractCell {
     
     @Override
     public String toString() {
-        return String.format("%d,%d", r, c);
+        return String.format("%d", value);
     }
     
     public abstract boolean isValid();

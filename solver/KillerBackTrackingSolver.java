@@ -8,6 +8,7 @@ import cell.AbstractCell;
 import grid.SudokuGrid;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -30,7 +31,7 @@ public class KillerBackTrackingSolver extends KillerSudokuSolver
         if(grid == null) {
             throw new RuntimeException("Please specify sudoku board to solve");
         }
-    
+        
         board = grid.getBoard();
         values = grid.getValues();
     
@@ -38,16 +39,19 @@ public class KillerBackTrackingSolver extends KillerSudokuSolver
     } // end of solve()
     
     private boolean solve(int index) {
+        
         if(index == board.size()) {
             return board.stream().allMatch(AbstractCell::isValid);
         }
         
         AbstractCell cell = board.get(index);
+        
         if(cell.isFinal()) {
             return solve(index + 1);
         } else {
             for(Integer val : values) {
                 cell.setValue(val);
+                System.out.println(board);
                 if(cell.isValid()) {
                     boolean done = solve(index + 1);
                     if(done) {
@@ -55,7 +59,7 @@ public class KillerBackTrackingSolver extends KillerSudokuSolver
                     }
                 }
             }
-            cell.setValue(-1);
+            cell.setValue(0);
             return false;
         }
     }

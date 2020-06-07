@@ -32,11 +32,6 @@ public class KillerCell extends Cell {
     }
     
     @Override
-    public String toString() {
-        return String.format("%d %d,%d", cageTotal, r, c);
-    }
-    
-    @Override
     public boolean isFinal() {
         return false;
     }
