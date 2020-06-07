@@ -4,8 +4,6 @@
 
 package grid;
 
-import cell.AbstractCell;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;

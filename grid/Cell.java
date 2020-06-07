@@ -1,4 +1,4 @@
-package cell;
+package grid;
 
 public class Cell extends AbstractCell implements Comparable<Cell> {
     

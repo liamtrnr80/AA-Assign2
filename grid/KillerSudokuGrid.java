@@ -3,9 +3,6 @@
  */
 package grid;
 
-import cell.AbstractCell;
-import cell.KillerCell;
-
 import java.io.*;
 import java.util.*;
 
@@ -20,7 +17,6 @@ import java.util.*;
  * aiming to do (and hence what you should aim for in your implementation).
  */
 public class KillerSudokuGrid extends SudokuGrid {
-    // TODO: Add your own attributes
     private Map<String, List<KillerCell>> tempCage;
     private Map<String, Integer> tempVals;
     
@@ -101,10 +97,6 @@ public class KillerSudokuGrid extends SudokuGrid {
             }
         }
         
-        System.out.println("Cage " + cage);
-        System.out.println("TempCage" + tempCage);
-        System.out.println("TempValues " + tempVals);
-        
         cage.forEach((k, v) -> v.forEach(c -> c.setTotal(tempVals.get(k))));
         
         
@@ -115,8 +107,6 @@ public class KillerSudokuGrid extends SudokuGrid {
         String key = "";
         String[] keys = new String[numCages];
         String line;
-        
-        System.out.println("Setting up tempBoard");
         
         while ((line = reader.readLine()) != null) {
             String[] newLine = line.trim().split(" ");
@@ -171,8 +161,8 @@ public class KillerSudokuGrid extends SudokuGrid {
             }
             stringBuilder.append(board.get(i).getValue());
         }
-        
-        writer.write(stringBuilder.toString());
+
+        writer.write(stringBuilder.append("\n").toString());
         writer.close();
     } // end of outputBoard()
     
@@ -190,7 +180,7 @@ public class KillerSudokuGrid extends SudokuGrid {
             }
             stringBuilder.append(board.get(i).getValue());
         }
-        return stringBuilder.toString();
+        return stringBuilder.append("\n").toString();
     } // end of toString()
     
     

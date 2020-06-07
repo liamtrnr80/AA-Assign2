@@ -3,10 +3,6 @@
  */
 package grid;
 
-import cell.AbstractCell;
-import cell.Cell;
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +100,7 @@ public class StdSudokuGrid extends SudokuGrid {
             stringBuilder.append(board.get(i).getValue());
         }
         
-        writer.write(stringBuilder.toString());
+        writer.write(stringBuilder.append("\n").toString());
         writer.close();
     } // end of outputBoard()
     
@@ -122,8 +118,8 @@ public class StdSudokuGrid extends SudokuGrid {
             }
             stringBuilder.append(board.get(i).getValue());
         }
-        
-        return stringBuilder.toString();
+
+        return stringBuilder.append("\n").toString();
     } // end of toString()
     
     

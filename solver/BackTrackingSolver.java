@@ -4,8 +4,7 @@
 
 package solver;
 
-import cell.AbstractCell;
-import grid.Coordinate;
+import grid.AbstractCell;
 import grid.SudokuGrid;
 
 import java.util.ArrayList;

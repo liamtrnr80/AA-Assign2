@@ -4,11 +4,10 @@
 
 package solver;
 
-import cell.AbstractCell;
+import grid.AbstractCell;
 import grid.SudokuGrid;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -51,7 +50,6 @@ public class KillerBackTrackingSolver extends KillerSudokuSolver
         } else {
             for(Integer val : values) {
                 cell.setValue(val);
-                System.out.println(board);
                 if(cell.isValid()) {
                     boolean done = solve(index + 1);
                     if(done) {
@@ -62,5 +60,21 @@ public class KillerBackTrackingSolver extends KillerSudokuSolver
             cell.setValue(0);
             return false;
         }
+    }
+
+    public String print() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(board.get(0).getValue());
+        for (int i = 1; i < board.size(); i++) {
+            if (i % ((int) Math.sqrt(board.size())) == 0) {
+                stringBuilder.append("\n");
+            } else {
+                stringBuilder.append(" ");
+            }
+            stringBuilder.append(board.get(i).getValue());
+        }
+
+        return stringBuilder.append("\n").toString();
     }
 } // end of class KillerBackTrackingSolver()
