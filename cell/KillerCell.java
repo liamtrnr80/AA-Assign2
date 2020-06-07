@@ -23,11 +23,16 @@ public class KillerCell extends Cell {
     
     @Override
     public boolean isValid() {
-        return isCageValid();
+        return isCageValid() && super.isValid();
     }
     
     private boolean isCageValid() {
         return cage.stream().anyMatch(c -> c.getValue() == 0)
                 || cageTotal == cage.stream().mapToInt(AbstractCell::getValue).sum();
+    }
+    
+    @Override
+    public boolean isFinal() {
+        return false;
     }
 }

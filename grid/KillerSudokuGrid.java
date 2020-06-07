@@ -3,9 +3,14 @@
  */
 package grid;
 
+import cell.AbstractCell;
+import cell.KillerCell;
+
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -23,19 +28,46 @@ public class KillerSudokuGrid extends SudokuGrid
 
     public KillerSudokuGrid() {
         super();
-
-        // TODO: any necessary initialisation at the constructor
     } // end of KillerSudokuGrid()
 
-
     /* ********************************************************* */
-
 
     @Override
     public void initGrid(String filename)
         throws FileNotFoundException, IOException
     {
-        // TODO
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+    
+        String line = reader.readLine();
+    
+        size = Integer.parseInt(line);
+        sqr = (int) Math.sqrt(size);
+    
+        line = reader.readLine();
+        String[] vals = line.trim().split("\\s+|,\\s*");
+    
+        for (String string : vals) {
+            values.add(Integer.parseInt(string));
+        }
+    
+        board = new ArrayList<>(size * size);
+        
+        List<List<KillerCell>> column = new ArrayList<>(size);
+        List<List<KillerCell>> grid = new ArrayList<>(size);
+        List<List<KillerCell>> rows = new ArrayList<>(size);
+        
+        for(int i = 0; i < size; i++) {
+            column.add(new ArrayList<>());
+            grid.add(new ArrayList<>());
+        }
+        
+        int index = 0;
+        Map<String, Integer> values = new HashMap<>();
+        Map<String, List<KillerCell>> cage = new HashMap<>();
+        
+        for(int r = 0; r < size; r++) {
+        
+        }
     } // end of initBoard()
 
 
@@ -63,25 +95,5 @@ public class KillerSudokuGrid extends SudokuGrid
         // placeholder
         return false;
     } // end of validate()
-
-    @Override
-    public int getSize() {
-        return 0;
-    }
-
-    @Override
-    public List<List<Coordinate>> getBoard() {
-        return null;
-    }
-
-    @Override
-    public void setBoard(List board) {
-
-    }
-
-    @Override
-    public ArrayList<Integer> getValues() {
-        return null;
-    }
 
 } // end of class KillerSudokuGrid

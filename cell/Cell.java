@@ -9,9 +9,22 @@ public class Cell extends AbstractCell implements Comparable<Cell> {
         isFinal = value != -1;
     }
     
+    public boolean isSet() {
+        return this.value != -1;
+    }
+    
+    @Override
+    public boolean isFinal() {
+        return isFinal;
+    }
+    
+    public void setFinal(boolean isFinal) {
+        this.isFinal = isFinal;
+    }
+    
     @Override
     public boolean isValid() {
-        return false;
+        return isRowValid() && isColumnValid() && isGridValid();
     }
     
     @Override
@@ -21,9 +34,9 @@ public class Cell extends AbstractCell implements Comparable<Cell> {
     
     @Override
     public int compareTo(Cell o) {
-        int yComp = new Integer(r).compareTo(o.getRow());
+        int yComp = new Integer(r).compareTo(o.getR());
         if(yComp == 0) {
-            return new Integer(c).compareTo(o.getColumn());
+            return new Integer(c).compareTo(o.getC());
         }
         return yComp;
     }
