@@ -41,7 +41,6 @@ public abstract class AbstractCell {
         return value == -1;
     }
     
-    
     public abstract boolean isFinal();
     
     public void setRow(List<? extends AbstractCell> row) {
@@ -73,7 +72,7 @@ public abstract class AbstractCell {
     
     public abstract void reset();
     
-    protected boolean valid(List <? extends AbstractCell> cells) {
+    protected boolean valid(List<? extends AbstractCell> cells) {
         return cells.stream().filter(s -> !this.equals(s))
                 .noneMatch(s -> s.getValue() == this.value);
     }
@@ -92,7 +91,7 @@ public abstract class AbstractCell {
     
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Cell) {
+        if (obj instanceof Cell) {
             Cell other = (Cell) obj;
             return other.r == this.r && other.c == this.c;
         }
