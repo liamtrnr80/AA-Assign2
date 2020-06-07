@@ -4,6 +4,7 @@
 
 package solver;
 
+import cell.AbstractCell;
 import grid.Coordinate;
 import grid.SudokuGrid;
 
@@ -17,83 +18,47 @@ import java.util.List;
 public class BackTrackingSolver extends StdSudokuSolver
 {
     // TODO: Add attributes as needed.
-    private List<List<Coordinate>> sudoku;
-    private ArrayList<Integer> values;
+    private List<AbstractCell> board;
+    private List<Integer> values;
 
     public BackTrackingSolver() {
-        sudoku = new ArrayList<>();
+        board = new ArrayList<>();
         values = new ArrayList<>();
     } // end of BackTrackingSolver()
 
 
     @Override
     public boolean solve(SudokuGrid grid) {
-        int row = -1;
-        int col = -1;
-        boolean empty = true;
-        int size = grid.getSize();
-        sudoku = grid.getBoard();
+        if(grid == null) {
+            throw new RuntimeException("Please specify sudoku board to solve");
+        }
+    
+        board = grid.getBoard();
         values = grid.getValues();
-
-        for(int i = 0; i < size; i++) {
-            for(int j = 0; j < size; j++) {
-                if(sudoku.get(i).get(j).getValue() == -1){
-                    row = i;
-                    col = j;
-
-                    empty = false;
-                    break;
-                }
-            }
-            if(!empty) {
-                break;
-            }
-        }
-
-        if(empty){
-            return true;
-        }
-
-        for(Integer val : values) {
-            if(isSafe(row, col, val)) {
-                sudoku.get(row).get(col).setValue(val);
-                grid.setBoard(sudoku);
-                if(solve(grid)) {
-                    return true;
-                } else {
-                    sudoku.get(row).get(col).setValue(-1);
-                }
-            }
-        }
-        // placeholder
-        return false;
+    
+        return solve(0);
     } // end of solve()
-
-    private boolean isSafe(int row, int col, int num) {
-        for(int i = 0; i < sudoku.size(); i++) {
-            if(sudoku.get(row).get(i).getValue() == (num)) {
-                return false;
-            }
+    
+    private boolean solve(int index) {
+        if(index == board.size()) {
+            return board.stream().allMatch(AbstractCell::isValid);
         }
-    
-        for (List<Coordinate> coordinates : sudoku) {
-            if (coordinates.get(col).getValue() == (num)) {
-                return false;
-            }
-        }
-    
-        int sqrt = (int) Math.sqrt(sudoku.size());
-        int boxXStart = row - row % sqrt;
-        int boxYStart = col - col % sqrt;
-    
-        for(int i = boxXStart; i < boxXStart + sqrt; i++) {
-            for(int j = boxYStart; j < boxYStart + sqrt; j++) {
-                if (sudoku.get(i).get(j).getValue() == num) {
-                    return false;
+        
+        AbstractCell cell = board.get(index);
+        if(cell.isFinal()) {
+            return solve(index + 1);
+        } else {
+            for(Integer val : values) {
+                cell.setValue(val);
+                if(cell.isValid()) {
+                    boolean done = solve(index + 1);
+                    if(done) {
+                        return true;
+                    }
                 }
             }
+            cell.setValue(-1);
+            return false;
         }
-       
-        return true;
     }
 } // end of class BackTrackingSolver()

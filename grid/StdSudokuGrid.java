@@ -36,17 +36,14 @@ public class StdSudokuGrid extends SudokuGrid {
             throws FileNotFoundException, IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         
-        String line = reader.readLine();
-        
-        size = Integer.parseInt(line);
+        size = Integer.parseInt(reader.readLine());
         sqr = (int) Math.sqrt(size);
-        
-        line = reader.readLine();
+    
+        String line = reader.readLine();
         String[] vals = line.trim().split("\\s+|,\\s*");
         
-        for (String string : vals) {
+        for (String string : vals)
             values.add(Integer.parseInt(string));
-        }
         
         board = new ArrayList<>(size * size);
         
@@ -59,7 +56,7 @@ public class StdSudokuGrid extends SudokuGrid {
             grid.add(new ArrayList<>());
         }
         
-        
+        setupSudoku(reader);
         
         int index = 0;
         
@@ -87,7 +84,7 @@ public class StdSudokuGrid extends SudokuGrid {
                 board.add(s);
             }
         }
-        System.out.println(this);
+//        System.out.println(this);
     } // end of initBoard()
     
     
@@ -98,7 +95,7 @@ public class StdSudokuGrid extends SudokuGrid {
         BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
         
         stringBuilder.append(board.get(0).getValue());
-        for (int i = 0; i < board.size(); i++) {
+        for (int i = 1; i < board.size(); i++) {
             if (i % size == 0) {
                 stringBuilder.append("\n");
             } else {
@@ -117,7 +114,7 @@ public class StdSudokuGrid extends SudokuGrid {
         StringBuilder stringBuilder = new StringBuilder();
         
         stringBuilder.append(board.get(0).getValue());
-        for (int i = 0; i < board.size(); i++) {
+        for (int i = 1; i < board.size(); i++) {
             if (i % size == 0) {
                 stringBuilder.append("\n");
             } else {

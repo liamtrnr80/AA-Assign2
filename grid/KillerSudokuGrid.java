@@ -37,19 +37,20 @@ public class KillerSudokuGrid extends SudokuGrid
         throws FileNotFoundException, IOException
     {
         BufferedReader reader = new BufferedReader(new FileReader(filename));
-    
-        String line = reader.readLine();
-    
-        size = Integer.parseInt(line);
+        
+        size = Integer.parseInt(reader.readLine());
         sqr = (int) Math.sqrt(size);
     
-        line = reader.readLine();
+        System.out.println(size);
+        
+        String line = reader.readLine();
         String[] vals = line.trim().split("\\s+|,\\s*");
     
         for (String string : vals) {
             values.add(Integer.parseInt(string));
         }
     
+        int numCages = Integer.parseInt(reader.readLine());
         board = new ArrayList<>(size * size);
         
         List<List<KillerCell>> column = new ArrayList<>(size);
