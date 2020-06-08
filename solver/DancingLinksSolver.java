@@ -4,6 +4,7 @@
 
 package solver;
 
+import grid.AbstractCell;
 import grid.Coordinate;
 import grid.SudokuGrid;
 
@@ -17,12 +18,12 @@ import java.util.List;
 public class DancingLinksSolver extends StdSudokuSolver
 {
     // TODO: Add attributes as needed.
-    private List<List<Coordinate>> sudoku;
-    private ArrayList<Integer> values;
+    private List<AbstractCell> board;
+    private List<Integer> values;
     
     public DancingLinksSolver() {
         // TODO: any initialisation you want to implement.
-        sudoku = new ArrayList<>();
+        board = new ArrayList<>();
         values = new ArrayList<>();
     } // end of DancingLinksSolver()
 
@@ -30,7 +31,7 @@ public class DancingLinksSolver extends StdSudokuSolver
     @Override
     public boolean solve(SudokuGrid grid) {
         // TODO: your implementation of the dancing links solver for Killer Sudoku.
-
+        
         // placeholder
         return false;
     } // end of solve()
