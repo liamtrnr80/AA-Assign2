@@ -20,6 +20,10 @@ public class AlgorXSolver extends StdSudokuSolver
     // TODO: Add attributes as needed.
     private final int INDEX = 1;
     private final int CONSTRAINTS = 4;
+    
+    private ColNode header;
+    private List<Node> answer;
+    
     private List<AbstractCell> board;
     private List<Integer> values;
     private int size;

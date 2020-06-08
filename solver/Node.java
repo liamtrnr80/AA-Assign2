@@ -29,22 +29,22 @@ public class Node {
         return node;
     }
     
-    public void removeLeftRight() {
+    public void unlinkLeftRight() {
         left.right = right;
         right.left = left;
     }
     
-    public void reinsertLeftRight() {
+    public void linkLeftRight() {
         left.right = this;
         right.left = this;
     }
     
-    public void removeTopBottom() {
+    public void unlinkTopBottom() {
         top.bottom = bottom;
         bottom.top = top;
     }
     
-    public void reinsertTopBottom() {
+    public void linkTopBottom() {
         top.bottom = this;
         bottom.top = this;
     }
