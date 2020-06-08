@@ -61,20 +61,4 @@ public class KillerBackTrackingSolver extends KillerSudokuSolver
             return false;
         }
     }
-
-    public String print() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(board.get(0).getValue());
-        for (int i = 1; i < board.size(); i++) {
-            if (i % ((int) Math.sqrt(board.size())) == 0) {
-                stringBuilder.append("\n");
-            } else {
-                stringBuilder.append(" ");
-            }
-            stringBuilder.append(board.get(i).getValue());
-        }
-
-        return stringBuilder.append("\n").toString();
-    }
 } // end of class KillerBackTrackingSolver()

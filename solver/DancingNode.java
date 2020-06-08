@@ -1,19 +1,20 @@
 package solver;
 
-public class Node {
-    public Node left, right, top, bottom;
-    public ColNode column;
+public class DancingNode {
+    public DancingNode left, right, top, bottom;
+    public ColumnNode column;
     
-    public Node() {
+    public DancingNode() {
         left = right = top = bottom = this;
     }
     
-    public Node(ColNode c) {
+    public DancingNode(ColumnNode c) {
         this();
         column = c;
     }
     
-    public Node linkDown(Node node) {
+    DancingNode linkDown(DancingNode node) {
+        assert (this.column == node.column);
         node.bottom = bottom;
         node.bottom.top = node;
         node.top = this;
@@ -21,9 +22,9 @@ public class Node {
         return node;
     }
     
-    public Node linkRight(Node node) {
+    DancingNode linkRight(DancingNode node) {
         node.right = right;
-        node.right.right = node;
+        node.right.left = node;
         node.left = this;
         right = node;
         return node;

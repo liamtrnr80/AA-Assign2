@@ -1,10 +1,10 @@
 package solver;
 
-public class ColNode extends Node {
-    public int size;
-    public String name;
+public class ColumnNode extends DancingNode {
+    int size;
+    String name;
     
-    public ColNode(String n) {
+    public ColumnNode(String n) {
         super();
         size = 0;
         name = n;
@@ -14,8 +14,8 @@ public class ColNode extends Node {
     public void cover() {
         unlinkLeftRight();
         
-        for(Node i = bottom; i != this; i = i.bottom) {
-            for(Node j = i.right; j != i; j = j.right) {
+        for(DancingNode i = bottom; i != this; i = i.bottom) {
+            for(DancingNode j = i.right; j != i; j = j.right) {
                 j.unlinkTopBottom();
                 j.column.size--;
             }
@@ -23,8 +23,8 @@ public class ColNode extends Node {
     }
     
     public void uncover() {
-        for(Node i = top; i != this; i = i.top) {
-            for(Node j = i.left; j != i; j = j.left) {
+        for(DancingNode i = top; i != this; i = i.top) {
+            for(DancingNode j = i.left; j != i; j = j.left) {
                 j.column.size++;
                 j.linkTopBottom();
             }

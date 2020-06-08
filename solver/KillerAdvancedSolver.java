@@ -4,27 +4,66 @@
 
 package solver;
 
+import grid.AbstractCell;
 import grid.SudokuGrid;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**
  * Your advanced solver for Killer Sudoku.
  */
-public class KillerAdvancedSolver extends KillerSudokuSolver
-{
-    // TODO: Add attributes as needed.
-
+public class KillerAdvancedSolver extends KillerSudokuSolver {
+    private List<AbstractCell> board;
+    private List<Integer> values;
+    
+    /*
+     * Not implements due to time
+     */
     public KillerAdvancedSolver() {
-        // TODO: any initialisation you want to implement.
+        board = new ArrayList<>();
+        values = new ArrayList<>();
+    
     } // end of KillerAdvancedSolver()
-
-
+    
+    
     @Override
     public boolean solve(SudokuGrid grid) {
-        // TODO: your implementation of your advanced solver for Killer Sudoku.
-
-        // placeholder
-        return false;
+        if(grid == null) {
+            throw new RuntimeException("Please specify sudoku board to solve");
+        }
+        
+        board = grid.getBoard();
+        values = grid.getValues();
+        
+        return solve(0);
     } // end of solve()
-
+    
+    private boolean solve(int index) {
+        
+        if(index == board.size()) {
+            return board.stream().allMatch(AbstractCell::isValid);
+        }
+        
+        AbstractCell cell = board.get(index);
+        
+        if(cell.isFinal()) {
+            return solve(index + 1);
+        } else {
+            for(Integer val : values) {
+                cell.setValue(val);
+                if(cell.isValid()) {
+                    boolean done = solve(index + 1);
+                    if(done) {
+                        return true;
+                    }
+                }
+            }
+            cell.setValue(0);
+            return false;
+        }
+    }
 } // end of class KillerAdvancedSolver
