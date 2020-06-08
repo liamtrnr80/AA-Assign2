@@ -100,12 +100,13 @@ public abstract class SudokuGrid {
         return Collections.unmodifiableList(board);
     }
     
+    
+    /**
+     * A way to retrieve the values to be used on to solve the sudoku board.
+     * @return
+     */
     public List<Integer> getValues() {
         return values;
-    }
-    
-    public void setBoard(List<AbstractCell> newBoard) {
-        board = newBoard;
     }
     
 } // end of abstract class SudokuGrid

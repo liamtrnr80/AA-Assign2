@@ -15,7 +15,6 @@ import java.util.*;
  */
 public class DancingLinksSolver extends StdSudokuSolver
 {
-    // TODO: Add attributes as needed.
     private final int INDEX = 1;
     private final int CONSTRAINTS = 4;
     

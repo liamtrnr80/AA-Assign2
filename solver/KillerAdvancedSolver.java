@@ -8,8 +8,6 @@ import grid.AbstractCell;
 import grid.SudokuGrid;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -21,7 +19,7 @@ public class KillerAdvancedSolver extends KillerSudokuSolver {
     private List<Integer> values;
     
     /*
-     * Not implements due to time
+     * Not finished due to time
      */
     public KillerAdvancedSolver() {
         board = new ArrayList<>();

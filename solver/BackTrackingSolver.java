@@ -16,7 +16,6 @@ import java.util.List;
  */
 public class BackTrackingSolver extends StdSudokuSolver
 {
-    // TODO: Add attributes as needed.
     private List<AbstractCell> board;
     private List<Integer> values;
 
