@@ -86,6 +86,10 @@ public abstract class SudokuGrid {
         return size;
     }
     
+    public int getSqr() {
+        return sqr;
+    }
+    
     /**
      * A way to retrieve the sudoku board after it is initiated by the user and can be used
      * to solve properly
