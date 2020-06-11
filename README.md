@@ -1,4 +1,5 @@
 # AA-Assign2 - Sudoku Solver
+Assignment submission for Algorithms and Analysis 2020 by Liam Turner
 
 ## How to Run the code
 
