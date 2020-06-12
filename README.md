@@ -6,13 +6,11 @@ Assignment submission for Algorithms and Analysis 2020 by Liam Turner
 Compile the code using
 ```
 javac *.java grid/*.java solver/*.java
-
 ```
 
 To run the framework:
 ```
 java RmitSudoku [puzzle fileName] [game type] [solver type] [visualization] <output fileName>
-
 ```
 
 Where:
@@ -23,3 +21,8 @@ Where:
       - If Killer Sudoku is specfied (killer), then solver should be one of {backtracking, advanced} where *backtracking* is the backtracking algorithm for Killer Sudoku and ~~*advanced*~~ is the most efficient algorithm you can devise for solving Killer Sudoku.
    - visualization: whether to output grid before and another after solving, one of {n, y}
    - output fileName: (optional) If specified, the solved grid will be outputted to this file
+
+EXAMPLE
+```
+java RmitSudoku sampleGames/easy-std-99-01.in sudoku backtracking y output.out
+```
