@@ -26,3 +26,37 @@ EXAMPLE
 ```
 java RmitSudoku sampleGames/easy-std-99-01.in sudoku backtracking y output.out
 ```
+
+## Standard Sudoku Input
+- size/dimensions of puzzle
+- list of symbols used
+- tuples of row,coloumn value , one tuple per line
+
+Example
+```
+9
+1 2 3 4 5 6 7 8 9
+0,0 5
+0,1 3
+0,4 7
+1,0 6
+1,3 1
+...
+```
+
+## Killer Sudoku Input
+- size/dimensions of puzzle
+- list of symbols used
+- number of cages
+- Total of cage, list of row,column for each cage, one per line
+
+Example
+```
+9
+1 2 3 4 5 6 7 8 9
+29
+3 0,0 0,1
+15 0,2 0,3 0,4
+...
+```
+```
