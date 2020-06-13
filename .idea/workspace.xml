@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5d63d691-ccd3-49ee-8ad6-335fc08f3e66" name="Default Changelist" comment="" />
+    <list default="true" id="5d63d691-ccd3-49ee-8ad6-335fc08f3e66" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +30,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Expanded-Chests/build.gradle" />
   </component>
   <component name="RunManager" selected="Application.RmitSudoku-99">
     <configuration name="RmitSudoku-44" type="Application" factoryName="Application" temporary="true">
@@ -47,8 +50,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.RmitSudoku-99" />
       <item itemvalue="Application.RmitSudoku-44" />
+      <item itemvalue="Application.RmitSudoku-99" />
     </list>
     <recent_temporary>
       <list>
@@ -90,6 +93,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="587" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589648011304" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1592030876185">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/1920.704.1920.1040/0.0.1920.1040/-520.1080.1080.1880/-1920.0.1920.1040@0.0.1920.1040" timestamp="1592030876185" />
     <state width="1877" height="270" key="GridCell.Tab.0.bottom" timestamp="1591560725744">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -126,6 +133,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589647100937" />
+    <state x="342" y="140" key="new project wizard" timestamp="1592029719139">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="140" key="new project wizard/1920.704.1920.1040/0.0.1920.1040/-520.1080.1080.1880/-1920.0.1920.1040@0.0.1920.1040" timestamp="1592029719139" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1590406602893">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
